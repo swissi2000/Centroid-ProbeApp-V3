@@ -32,7 +32,7 @@ Press the **ATC Configuration** Button to open  the ATC-Configuration Screen.
 
 ## 2. Rack-ATC Configuration
 
-![](/images/pa136.png)
+![](/images/pa134.png)
 
 Fill out the configuration parameters. If you need Help with any of the Parameters, select the *?* on the top right of the Configuration Screen and then hoover with the *?* over the Input-field you need Help with and a Balloon Help Message will provide more information.
 
