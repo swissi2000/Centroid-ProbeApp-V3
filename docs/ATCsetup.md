@@ -37,20 +37,20 @@ Press the **ATC Configuration** Button to open  the ATC-Configuration Screen.
 Fill out the configuration parameters. If you need Help with any of the Parameters, select the *?* on the top right of the Configuration Screen and then hoover with the *?* over the Input-field you need Help with and a Balloon Help Message will provide more information.
 
 ### Automatic Dust Shoe
-If the Automatic Dust Shoe function is being used, the ATC-Function bar on the ProbeApp Tool Library Manager screen will display two addittional buttons to Park and Mount the Dust Shoe.
+If the Automatic Dust Shoe function is being used, the ATC-Function bar on the ProbeApp Tool Library Manager screen will display two additional buttons to Park and Mount the Dust Shoe.
 
 **IMPORTANT!** Note that the **Load Tool** and **Unload Tool** buttons assume that there's no Dust Shoe mounted on the spindle. It's up to the operator to Park the Dust Shoe before loading/unloading a Tool within the Tool Library Manager.
 
 Also note that the commands to Park and Mount the Dust Shoe need to be added **manually** to the M6 Tool Change Macro mfunc6.mac. The sections of where these commands have to be added are clearly commented within the provided mfunc6.mac Template file.
 
 ### Extendable Tool Rack
-An extendable Tool Rack of Type Fork/Finger can be configured in the standard way whewre spindle movement is being used to move the tool in and out of the tool holder. 
+An extendable Tool Rack of Type Fork/Finger can be configured in the standard way where spindle movement is being used to slide the tool in and out of the tool holder. 
 
 Another option is to let the rack retract move pull the tool out of the tool holder and the rack extend move is pushing the tool into the rack holder. This requires less table space for a tool change as no additional space is needed for the spindle to slide the tool out of the extended rack. To configure this option, the **Slide Out Clearance Position** must be configured with the same machine coordinate position as the center line of the holder. Also the option **Keep Rack Extended** can NOT be used in this case.
 
-The standard behavior is that the rack is being extended and retracted for every tool load and unload. If it is preferred to leave the tool rack extended, the **Keep Rack Extended** option can be used. Using this option does have the effect within the ATC functions of the Tool Library Manager, that the first tool load or unload move will extend the rack and keep it extended until the Tool Library Manager is sxited with the **Exit** button.
+The standard behavior is that the rack is being extended and retracted for every tool load and unload. If it is preferred to leave the tool rack extended, the **Keep Rack Extended** option can be used. Using this option does have the effect within the ATC functions of the Tool Library Manager, that the first tool load or unload move will extend the rack and keep it extended until the Tool Library Manager is exited with the **Exit** button.
 
-**IMPORTANT**. When using the **Keep Rack Extended** option, the **Rack Retract Command** **MUST** be added to the end of the M6 Tool Change Macro mfunc6.mac intto tthe commented section of the provided mfunc6.mac Template file.
+**IMPORTANT**. When using the **Keep Rack Extended** option, the **Rack Retract Command** **MUST** be added to the end of the M6 Tool Change Macro mfunc6.mac into the commented section of the provided mfunc6.mac Template file.
 
 ### Requires Tool Orientation
 If the Spindle requires Tool Orientation, check the box **Requires Tool Orientation** and enter the required commands.
