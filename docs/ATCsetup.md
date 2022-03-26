@@ -48,7 +48,9 @@ An extendable Tool Rack of Type Fork/Finger can be configured in the standard wa
 
 Another option is to let the rack retract move pull the tool out of the tool holder and the rack extend move is pushing the tool into the rack holder. This requires less table space for a tool change as no additional space is needed for the spindle to slide the tool out of the extended rack. To configure this option, the **Slide Out Clearance Position** must be configured with the same machine coordinate position as the center line of the holder. Also the option **Keep Rack Extended** can NOT be used in this case.
 
-The standard behavior is that the rack is being extended and retracted for every tool load and unload. If it is preferred to leave the tool rack extended
+The standard behavior is that the rack is being extended and retracted for every tool load and unload. If it is preferred to leave the tool rack extended, the **Keep Rack Extended** option can be used. Using this option does have the effect within the ATC functions of the Tool Library Manager, that the first tool load or unload move will extend the rack and keep it extended until the Tool Library Manager is sxited with the **Exit** button.
+
+**IMPORTANT**. When using the **Keep Rack Extended** option, the **Rack Retract Command** **MUST** be added to the end of the M6 Tool Change Macro mfunc6.mac intto tthe commented section of the provided mfunc6.mac Template file.
 
 ### Requires Tool Orientation
 If the Spindle requires Tool Orientation, check the box **Requires Tool Orientation** and enter the required commands.
@@ -100,7 +102,7 @@ M5
 ; Add Commands here that need to happen before getting Tool from ATC
 ;------------------------------------------------------------------------------
 ; Turn off Stuff: Coolant (M9), Mist (M8) etc.
-; Automatic Dust Boot Parking?
+; Add Command for Automatic Dust Boot Parking if needed
 
 ;------------------------------------------------------------------------------
 ; Save XYZ Positions for machine to return to after Tool Retrieval
@@ -130,21 +132,14 @@ G[#25001]         ;Force Machines Default Unit of Measure
 If #50001
 G65 "c:\cncm\probing\ATC_return_tool.cnc"            ;will return tool in spindle if needed
 If #50001
-G65 "c:\cncm\probing\ATC_get_tool.cnc"               ;will retrive the requested tool
+G65 "c:\cncm\probing\ATC_get_tool.cnc"               ;will retrieve the requested tool
 
 ;------------------------------------------------------------------------------------------
 ; Activate an automated Tool Height Offset Measurement Cycle with TT at fix Location 
 ; if the requested Tool has no Height Offset set in the Tool Offset Library.
 ;------------------------------------------------------------------------------------------
-;If #[10000+#[12000+[#4120]]] == 0 Then #29500 = 40  ;sets Flag for Auto Tool Height Offset Measurement
-;If #[10000+#[12000+[#4120]]] == 0 Then M58          ;activates an automated Tool Height Offset Measurement Cycle with fix TT
-
-;------------------------------------------------------------------------------------------
-; Force opening of ProbeApp-Tool Library Manager by Turning on Worklight 
-; Activate these lines if this function is wanted
-;------------------------------------------------------------------------------------------
-;If #61112 != 0 Then #29500 = 12                     ;sets Flag to open ProbeApp-Tool Manager Library
-;If #61112 != 0 Then M58                             ;opens ProbeApp-Tool Manager Library
+If #[10000+#[12000+[#4120]]] == 0 Then #29500 = 40  ;sets Flag for Auto Tool Height Offset Measurement
+If #[10000+#[12000+[#4120]]] == 0 Then M58          ;activates an automated Tool Height Offset Measurement Cycle with fix TT
 
 ;------------------------------------------------------------------------------------------
 ; Restore G20/G21 and G90/G91 Mode
@@ -161,7 +156,8 @@ G[#31997]  ;Restore G90/G91 mode
 ;------------------------------------------------------------------------------
 ; Add Commands here that need to happen after getting Tool from ATC
 ;------------------------------------------------------------------------------
-; Retrieve parked Dust Boot?
+; Add Command to Retrieve parked Dust Boot if needed
+; Add Command to Retract Tool Rack if "Keep Rack Extended" option is used
 
 ;------------------------------------------------------------------------------
 ; Return to Position where M6 Tool Change command was issued
