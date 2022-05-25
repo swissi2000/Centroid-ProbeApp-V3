@@ -48,7 +48,8 @@ This method has three different Probing Cycle Types. Read the description for ea
 
 ![](/images/pa070.PNG)
 
-This cycle is being used on the first Tool Change after a new workpiece has been mounted that has an unknown top surface position. *Cycle 1* involves two different Probing Moves.
+This cycle is being used on the first Tool Change after a new workpiece has been mounted that has an unknown top surface position. 
+*Cycle 1* involves two different Probing Moves (**NOTE:** Exception to this 2 cycle process occurs when the checkbox "Use current WCS Z0 of active Tool" is being checked. See the end of this chapter for the functionality of this checkbox):
 
 The first Probing Move is using the movable TT (or the TP if selected) on top of the workpiece and will measure the exact position of the top surface.
 
@@ -59,6 +60,8 @@ The Cycle 1 is being used with a movable TT, the cycle will also set the correct
 This is a little different if a Touch Probe is being used as the Touch Probe will just measure and set the Reference Height Offset in Cycle 1.
 If Cycle 1 finishes when using a Touch Probe, a message will ask to remove the Touch Probe and insert the requested tool.
 After this has been completed and the Cycle Start button is pressed, the **ProbeApp-Tool Setter** will open again and Cycle 2, as described below, needs to be executed to set the correct Tool Height Offset for the first tool.
+
+Exception to this 2 cycle process can be forced if WCS Z0 has already been set with a Touch Probe or a Triple Corner Finder plate and the Touch Probe (or the tool in the case of the Triple Corner Finder plate) is still in the spindle. In this case the checkbox "Use current WCS Z0 of active Tool" can be checked to skip the first probing cycle to find the top of the stock as this has already been established.
 
 ### Cycle 2: Set Z0 with Fixed TT - Ref Height Offset 
 
